@@ -1,0 +1,776 @@
+openapi: 3.0.1
+info:
+  title: AwsServicesTest
+  description: This APi test or implements diffrent AWS services
+  termsOfService: NA
+  contact:
+    email: er.vikaspaul@gmail.com
+  license:
+    name: AwsServices
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+servers:
+  - url: 'https://localhost:7070/awsservices/v1'
+tags:
+  - name: customer
+    description: Customer Managment with AWS Services
+  - name: user
+    description: User Managment with AWS Services
+paths:
+  /customer:
+    put:
+      tags:
+        - customer
+      summary: Update an existing customer
+      description: Update an existing known customer
+      operationId: updateCustomer
+      requestBody:
+        description: customer update request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerUpdateRequest'
+        required: true
+      responses:
+        '202':
+          description: Customer Sucessfully Updated
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+    post:
+      tags:
+        - customer
+      summary: Add new Customer
+      description: Add new customer which has admin role
+      operationId: addCustomer
+      requestBody:
+        description: enter the appropriate customer creation Request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCreationRequest'
+        required: true
+      responses:
+        '202':
+          description: Customer Sucessfully Added
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  '/customer/{customerId}':
+    get:
+      tags:
+        - customer
+      summary: Find customer by ID
+      description: Returns a single customer
+      operationId: getCustomerById
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Customer Details Fetched Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailsResponse'
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+    delete:
+      tags:
+        - customer
+      summary: Deletes a Customer
+      description: Deletes a Customer and underlying details
+      operationId: deleteCustomerById
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '202':
+          description: Customer Deleted Sucessfully
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        '202':
+          description: User Sucessfully Created
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Updated user object
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        '202':
+          description: User Sucessfully updated
+          content: {}
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  /user/createWithArray:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: Creates list of users with given input array
+      operationId: createUsersWithArrayInput
+      requestBody:
+        description: List of user object
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        '202':
+          description: User Creted With List Sucessful
+          content: {}
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  /user/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: Logs user into the system
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User Sucessfully Loggedin
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        '202':
+          description: User Logout Sucessful
+          content: {}
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+  '/user/{username}':
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: 'The name that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User Details Sucessfully retrived
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userdetails'
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: User Sucessfully Deleted
+          content: {}
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '405':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        default:
+          description: successful operation
+          content: {}
+components:
+  schemas:
+    CustomerCreationRequest:
+      type: object
+      required: 
+        - companyName
+        - contactName
+        - contactEmail
+        - contactNumber
+        - type
+      properties:
+        companyName:
+          description: Name of the Company of the Registering Customer
+          type: string
+        contactName:
+          description: Contact person of thest company
+          items:
+            $ref: '#/components/schemas/CompanyContactEmail'
+        contactEmail:
+          description: Company Contact Email
+          items:
+            $ref: '#/components/schemas/CompanyContactEmail'
+        contactNumber:
+          description: Contact number of the customer
+          items:
+            $ref: '#/components/schemas/CompanyNumber'
+        type:
+          description: Type of Customer
+          items:
+            $ref: '#/components/schemas/CustomerType'
+    CustomerUpdateRequest:
+      type: object
+      required: 
+        - id
+        - companyName
+        - contactName
+        - contactEmail
+        - contactNumber
+        - type
+      properties:
+        id:
+          description: id of the customer
+          type: integer
+          format: int32
+        companyName:
+          description: Name of the Company of the Registering Customer
+          items:
+            $ref: '#/components/schemas/CompanyName'
+        contactName:
+          description: Contact person of thest company
+          items:
+            $ref: '#/components/schemas/CompanyContactName'
+        contactEmail:
+          description: Company Contact Email
+          items:
+            $ref: '#/components/schemas/CompanyContactEmail'
+        contactNumber:
+          description: Contact number of the customer
+          items:
+            $ref: '#/components/schemas/CompanyNumber'
+        type:
+          description: Type of Customer
+          items:
+            $ref: '#/components/schemas/CustomerType'
+        hsmUserId:
+          description: Hsm Customer ID
+          items:
+            $ref: '#/components/schemas/HsmUserID'
+        publicKeyConfirmed:
+          description: Public Key Confirmed
+          items:
+            $ref: '#/components/schemas/PublicKeyConfirmed'
+        customerUUID:
+          description: Customer UUID
+          items:
+            $ref: '#/components/schemas/CustomerUUID'
+    CustomerDetailsResponse:
+      type: object
+      properties:
+        id:
+          description: id of the customer
+          type: integer
+          format: int64
+        companyName:
+          description: Name of the Company of the Registering Customer
+          items:
+            $ref: '#/components/schemas/CompanyName'
+        contactName:
+          description: Contact person of thest company
+          items:
+            $ref: '#/components/schemas/CompanyContactName'
+        contactEmail:
+          description: Company Contact Email
+          items:
+            $ref: '#/components/schemas/CompanyContactEmail'
+        contactNumber:
+          description: Contact number of the customer
+          items:
+            $ref: '#/components/schemas/CompanyNumber'
+        type:
+          description: Type of Customer
+          items:
+            $ref: '#/components/schemas/CustomerType'
+        hsmUserId:
+          description: Hsm Customer ID
+          items:
+            $ref: '#/components/schemas/HsmUserID'
+        publicKeyConfirmed:
+          description: Public Key Confirmed
+          items:
+            $ref: '#/components/schemas/PublicKeyConfirmed'
+        customerUUID:
+          description: Customer UUID
+          items:
+            $ref: '#/components/schemas/CustomerUUID'
+    CreateUserRequest:
+      type: object
+      required: 
+        - customerUUID
+        - contactName
+        - contactEmail
+        - contactNumber
+        - type
+        - role
+      properties:
+        customerUUID:
+          description: CustomerID of the Registering Customer
+          items:
+            $ref: '#/components/schemas/CustomerUUID'
+        contactName:
+          description: Contact person of thest company
+          items:
+            $ref: '#/components/schemas/UserContactName'
+        contactEmail:
+          description: Company Contact Email
+          items:
+            $ref: '#/components/schemas/UserContactEmail'
+        contactNumber:
+          description: Contact number of the customer
+          items:
+            $ref: '#/components/schemas/UserContactNumber'
+        type:
+          description: Type of Customer
+          items:
+            $ref: '#/components/schemas/UserType'
+        role:
+          description: USer Role
+          items:
+            $ref: '#/components/schemas/UserRole'
+    Userdetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        customerUUID:
+          description: CustomerID of the Registering Customer
+          items:
+            $ref: '#/components/schemas/CustomerUUID'
+        ContactName:
+          description: Contact person of thest company
+          items:
+            $ref: '#/components/schemas/UserContactName'
+        ContactEmail:
+          description: Company Contact Email
+          items:
+            $ref: '#/components/schemas/UserContactEmail'
+        ContactNumber:
+          description: Contact number of the customer
+          items:
+            $ref: '#/components/schemas/UserContactNumber'
+        Type:
+          description: Type of Customer
+          items:
+            $ref: '#/components/schemas/UserType'
+        Role:
+          description: USer Role
+          items:
+            $ref: '#/components/schemas/UserRole'
+    ApiErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    CompanyName:
+      type: string
+      maxLength: 50
+      minLength: 1
+    CompanyContactName:
+      type: string
+      maxLength: 50
+      minLength: 1
+    CompanyContactEmail:
+      type: string
+    CompanyNumber:
+      type: integer
+      format: int32
+      minimum: 1111111111
+    CustomerType:
+      type: string
+      enum:
+        - Small
+        - Medium
+        - Large
+        - Dummy
+    HsmUserID:
+      type: string
+    PublicKeyConfirmed:
+      type: boolean
+      default: false
+    CustomerUUID:
+      type: string
+    UserContactName:
+      type: string
+      minLength: 1
+      maxLength: 50
+    UserContactEmail:
+      type: string
+    UserContactNumber:
+      type: integer
+      format: int32
+    UserType:
+      type: string
+      enum:
+        - ADMIN
+        - SUBADMIN
+        - USER
+        - DUMMY
+    UserRole:
+      type: string
+      enum:
+        - ADMIN
+        - SUBADMIN
+        - USER
+        - DUMMY

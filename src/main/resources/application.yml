@@ -1,0 +1,44 @@
+cloud:
+  aws:
+    region:
+      static: eu-west-1
+    stack:
+      auto: false
+logging:
+  level:
+    org:
+      hibernate: DEBUG
+      springframework:
+        web: DEBUG
+server:
+  port: 7070
+spring:
+  application:
+    admin:
+      enabled: true
+    name: awsservicesstart
+  datasource:
+    continue-on-error: false
+    dbcp2:
+      test-while-idle: true
+      validation-query: SELECT 1
+    driverClassName: org.postgresql.Driver
+    initialization-mode: ALWAYS
+    password: admin
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+  devtools:
+    add-properties: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    show-sql: true
+  profiles:
+    active: dev
+  session:
+    store-type: none
