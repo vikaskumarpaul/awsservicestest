@@ -13,7 +13,7 @@
 	<artifactId>awsservicestest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>awsservicestest</name>
-	<description>Demo project to test AWS Services</description>
+	<description>Demo project to test AWS Services</description> 
 
 	<properties>
 		<java.version>1.8</java.version>
