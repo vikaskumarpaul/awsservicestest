@@ -1,38 +1,41 @@
 package com.awstest.services.entity.mapper;
 
-/*import org.mapstruct.Mapper;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-import com.test.awsservices.entity.CustomerEntity;
-import com.test.awsservices.requests.CustomerCreationRequest;
-import com.test.awsservices.responses.CustomerDetails;
+import com.awstest.services.entity.CustomerEntity;
+import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
-@Mapper*/
+@Mapper
 public interface CustomerMapper {
 
+	CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+
+	@Mappings({
+
+			@Mapping(source = "id", target = "id"),
+
+			@Mapping(source = "companyname", target = "companyName"),
+
+			@Mapping(source = "contactname", target = "contactName"),
+
+			@Mapping(source = "contactemail", target = "contactEmail"),
+
+			@Mapping(source = "publickeyconfirmed", target = "publickeyconfirmed"),
+
+			@Mapping(source = "uniquecustomerid", target = "uniquecustomerid"),
+
+			@Mapping(source = "uniquecustomerid", target = "customerUUID"),
+
+			@Mapping(source = "hsmuserid", target = "hsmUserId"),
+
+			@Mapping(source = "createdAt", target = "createdAt") })
+	CustomerDetailsResponse customerEntityToDetails(CustomerEntity customerEntity);
+
 	/*
-	 * CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
-	 * 
-	 * @Mappings({
-	 * 
-	 * @Mapping(source = "id", target = "id"),
-	 * 
-	 * @Mapping(source = "companyName", target = "companyname"),
-	 * 
-	 * @Mapping(source = "contactName", target = "contactname"),
-	 * 
-	 * @Mapping(source = "contactEmail", target = "contactemail"),
-	 * 
-	 * @Mapping(source = "publicKeyConfirmed", target = "publickeyconfirmed"),
-	 * 
-	 * @Mapping(source = "uniqueCustomerId", target = "uniquecustomerid"),
-	 * 
-	 * @Mapping(source = "hsmUserId", target = "hsmuserid") }) CustomerDetails
-	 * customerEntityToDetails(CustomerEntity customerEntity);
-	 * 
-	 * @Mappings({ @Mapping(source="companyname", target="companyname"),
+	 * @Mappings({ @Mapping(source = "companyname", target = "companyname"),
 	 * 
 	 * @Mapping(source = "contactname", target = "contactname"),
 	 * 

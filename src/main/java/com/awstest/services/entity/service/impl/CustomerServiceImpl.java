@@ -1,6 +1,5 @@
 package com.awstest.services.entity.service.impl;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -9,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.awstest.services.entity.CustomerEntity;
+import com.awstest.services.entity.mapper.CustomerMapper;
 import com.awstest.services.entity.repository.CustomerRepository;
 import com.awstest.services.entity.service.CustomerService;
-import com.awstest.services.model.CustomerCreationRequest;
-import com.awstest.services.model.CustomerDetailsResponse;
-import com.awstest.services.model.CustomerType;
+import com.awstest.services.openapi.model.CustomerCreationRequest;
+import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -30,17 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<CustomerEntity> optCustomerEntity = customerRepository.findById(customerID);
 
 		if (optCustomerEntity.isPresent()) {
-			CustomerDetailsResponse customerDetailsResponse = new CustomerDetailsResponse();
-			CustomerEntity customerEntity = optCustomerEntity.get();
-			customerDetailsResponse.setId(customerEntity.getId());
-			customerDetailsResponse.setCompanyName(Arrays.asList(customerEntity.getCompanyname()));
-			customerDetailsResponse.setContactEmail(Arrays.asList(customerEntity.getUniquecustomerid()));
-			customerDetailsResponse.setContactNumber(Arrays.asList(customerEntity.getVersion()));
-			customerDetailsResponse.setCustomerUUID(Arrays.asList(customerEntity.getHsmuserid()));
-			customerDetailsResponse.setHsmUserId(Arrays.asList(customerEntity.getHsmuserid()));
-			customerDetailsResponse.setPublicKeyConfirmed(Arrays.asList(new Boolean(true)));
-			customerDetailsResponse.setType(Arrays.asList(CustomerType.LARGE));
-			return customerDetailsResponse;
+			return CustomerMapper.INSTANCE.customerEntityToDetails(optCustomerEntity.get());
 		}
 
 		return null;

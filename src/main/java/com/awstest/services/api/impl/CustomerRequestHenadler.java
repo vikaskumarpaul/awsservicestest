@@ -1,4 +1,4 @@
-package com.awstest.services.controller.impl;
+package com.awstest.services.api.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.awstest.services.controller.CustomerApi;
 import com.awstest.services.entity.service.CustomerService;
-import com.awstest.services.model.CustomerDetailsResponse;
+import com.awstest.services.openapi.api.CustomerApi;
+import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
 @RestController
 @RequestMapping("/customerhandler/v1")

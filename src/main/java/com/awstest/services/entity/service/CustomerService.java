@@ -1,7 +1,7 @@
 package com.awstest.services.entity.service;
 
-import com.awstest.services.model.CustomerCreationRequest;
-import com.awstest.services.model.CustomerDetailsResponse;
+import com.awstest.services.openapi.model.CustomerCreationRequest;
+import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
 public interface CustomerService {
 	
