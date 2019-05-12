@@ -548,18 +548,23 @@ components:
         companyName:
           description: Name of the Company of the Registering Customer
           type: string
+          maxLength: 50
+          minLength: 1
         contactName:
-          description: Contact person of thest company
-          items:
-            $ref: '#/components/schemas/CompanyContactEmail'
+          description: Contact Name of person of the company
+          type: string
+          maxLength: 50
+          minLength: 1
         contactEmail:
           description: Company Contact Email
-          items:
-            $ref: '#/components/schemas/CompanyContactEmail'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactNumber:
           description: Contact number of the customer
-          items:
-            $ref: '#/components/schemas/CompanyNumber'
+          type: integer
+          format: int32
+          minimum: 1111111111
         type:
           description: Type of Customer
           items:
@@ -580,36 +585,37 @@ components:
           format: int32
         companyName:
           description: Name of the Company of the Registering Customer
-          items:
-            $ref: '#/components/schemas/CompanyName'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactName:
           description: Contact person of thest company
-          items:
-            $ref: '#/components/schemas/CompanyContactName'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactEmail:
           description: Company Contact Email
-          items:
-            $ref: '#/components/schemas/CompanyContactEmail'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactNumber:
           description: Contact number of the customer
-          items:
-            $ref: '#/components/schemas/CompanyNumber'
+          type: integer
+          format: int32
+          minimum: 1111111111
         type:
           description: Type of Customer
           items:
             $ref: '#/components/schemas/CustomerType'
         hsmUserId:
           description: Hsm Customer ID
-          items:
-            $ref: '#/components/schemas/HsmUserID'
+          type: string
         publicKeyConfirmed:
           description: Public Key Confirmed
-          items:
-            $ref: '#/components/schemas/PublicKeyConfirmed'
+          type: boolean
         customerUUID:
           description: Customer UUID
-          items:
-            $ref: '#/components/schemas/CustomerUUID'
+          type: string
     CustomerDetailsResponse:
       type: object
       properties:
@@ -619,36 +625,48 @@ components:
           format: int64
         companyName:
           description: Name of the Company of the Registering Customer
-          items:
-            $ref: '#/components/schemas/CompanyName'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactName:
           description: Contact person of thest company
-          items:
-            $ref: '#/components/schemas/CompanyContactName'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactEmail:
           description: Company Contact Email
-          items:
-            $ref: '#/components/schemas/CompanyContactEmail'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactNumber:
           description: Contact number of the customer
-          items:
-            $ref: '#/components/schemas/CompanyNumber'
+          type: integer
+          format: int32
+          minimum: 1111111111
         type:
           description: Type of Customer
           items:
             $ref: '#/components/schemas/CustomerType'
         hsmUserId:
           description: Hsm Customer ID
-          items:
-            $ref: '#/components/schemas/HsmUserID'
+          type: string
         publicKeyConfirmed:
           description: Public Key Confirmed
-          items:
-            $ref: '#/components/schemas/PublicKeyConfirmed'
+          type: boolean
         customerUUID:
           description: Customer UUID
-          items:
-            $ref: '#/components/schemas/CustomerUUID'
+          type: string
+          maxLength: 50
+          minLength: 1
+        createdAt:
+          description: Time of creation Entry
+          type: string
+        updatedAt:
+          description: Data Updated time
+          type: string
+        version:
+          description: version of the data
+          type: integer
     CreateUserRequest:
       type: object
       required: 
@@ -661,22 +679,26 @@ components:
       properties:
         customerUUID:
           description: CustomerID of the Registering Customer
-          items:
-            $ref: '#/components/schemas/CustomerUUID'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactName:
           description: Contact person of thest company
-          items:
-            $ref: '#/components/schemas/UserContactName'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactEmail:
           description: Company Contact Email
-          items:
-            $ref: '#/components/schemas/UserContactEmail'
+          type: string
+          maxLength: 50
+          minLength: 1
         contactNumber:
           description: Contact number of the customer
-          items:
-            $ref: '#/components/schemas/UserContactNumber'
+          type: integer
+          format: int32
+          minimum: 1111111111
         type:
-          description: Type of Customer
+          description: Type of user
           items:
             $ref: '#/components/schemas/UserType'
         role:
@@ -691,22 +713,26 @@ components:
           format: int64
         customerUUID:
           description: CustomerID of the Registering Customer
-          items:
-            $ref: '#/components/schemas/CustomerUUID'
+          type: string
+          maxLength: 50
+          minLength: 1
         ContactName:
           description: Contact person of thest company
-          items:
-            $ref: '#/components/schemas/UserContactName'
+          type: string
+          maxLength: 50
+          minLength: 1
         ContactEmail:
           description: Company Contact Email
-          items:
-            $ref: '#/components/schemas/UserContactEmail'
+          type: string
+          maxLength: 50
+          minLength: 1
         ContactNumber:
           description: Contact number of the customer
-          items:
-            $ref: '#/components/schemas/UserContactNumber'
+          type: integer
+          format: int32
+          minimum: 1111111111
         Type:
-          description: Type of Customer
+          description: Type of User
           items:
             $ref: '#/components/schemas/UserType'
         Role:
@@ -723,20 +749,6 @@ components:
           type: string
         message:
           type: string
-    CompanyName:
-      type: string
-      maxLength: 50
-      minLength: 1
-    CompanyContactName:
-      type: string
-      maxLength: 50
-      minLength: 1
-    CompanyContactEmail:
-      type: string
-    CompanyNumber:
-      type: integer
-      format: int32
-      minimum: 1111111111
     CustomerType:
       type: string
       enum:
@@ -744,22 +756,6 @@ components:
         - Medium
         - Large
         - Dummy
-    HsmUserID:
-      type: string
-    PublicKeyConfirmed:
-      type: boolean
-      default: false
-    CustomerUUID:
-      type: string
-    UserContactName:
-      type: string
-      minLength: 1
-      maxLength: 50
-    UserContactEmail:
-      type: string
-    UserContactNumber:
-      type: integer
-      format: int32
     UserType:
       type: string
       enum:

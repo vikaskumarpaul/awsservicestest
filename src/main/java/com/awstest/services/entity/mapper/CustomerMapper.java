@@ -1,5 +1,7 @@
 package com.awstest.services.entity.mapper;
 
+import java.time.OffsetDateTime;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -23,15 +25,17 @@ public interface CustomerMapper {
 
 			@Mapping(source = "contactemail", target = "contactEmail"),
 
-			@Mapping(source = "publickeyconfirmed", target = "publickeyconfirmed"),
-
-			@Mapping(source = "uniquecustomerid", target = "uniquecustomerid"),
+			@Mapping(source = "publickeyconfirmed", target = "publicKeyConfirmed"),
 
 			@Mapping(source = "uniquecustomerid", target = "customerUUID"),
 
 			@Mapping(source = "hsmuserid", target = "hsmUserId"),
 
-			@Mapping(source = "createdAt", target = "createdAt") })
+			@Mapping(source = "createdAt", target = "createdAt"),
+
+			@Mapping(source = "updatedAt", target = "updatedAt"),
+
+			@Mapping(source = "version", target = "version"), })
 	CustomerDetailsResponse customerEntityToDetails(CustomerEntity customerEntity);
 
 	/*
@@ -50,4 +54,7 @@ public interface CustomerMapper {
 	 * customerCreationRequest);
 	 */
 
+	default String map(OffsetDateTime datetime) {
+		return datetime.toString();
+	}
 }

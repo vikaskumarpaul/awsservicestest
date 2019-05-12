@@ -40,6 +40,6 @@ spring:
     show-sql: true
   profiles:
     active: dev
-    include: IDE
+    include: only-eclipse
   session:
     store-type: none
