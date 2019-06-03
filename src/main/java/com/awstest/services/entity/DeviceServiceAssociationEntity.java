@@ -24,21 +24,21 @@ public class DeviceServiceAssociationEntity extends AbstractTimestampEntity
 
     @Id
     @SequenceGenerator(name = "DSA_seq_generator", sequenceName = "dsa_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DSA_seq_generator")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DSA_seq_generator")
     private Long id;
 
-    @Column(name = "serviceid")
+    @Column(name = "serviceid", columnDefinition = "BIGINT(50)", nullable = true)
     private Long serviceId;
 
-    @Column(name = "dsa_name")
+    @Column(name = "dsa_name", columnDefinition = "VARCHAR(50)", nullable = true)
     private String dsaName;
 
-    @Column(name = "created_by")
+    @Column(name = "created_by", columnDefinition = "VARCHAR(50)", nullable = true)
     private String createdBy;
 
-    @Column(name = "lastupdated_by")
+    @Column(name = "lastupdated_by", columnDefinition = "VARCHAR(50)", nullable = true)
     private String lastUpdatedBy;
 
-    @Column(name = "customerid")
+    @Column(name = "customerid", columnDefinition = "BIGINT(50)", nullable = true)
     private Long customerId;
 }

@@ -5,12 +5,15 @@ import java.time.OffsetDateTime;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.mapstruct.NullValueMappingStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 import com.awstest.services.entity.CustomerEntity;
+import com.awstest.services.openapi.model.CustomerCreationRequest;
 import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
-@Mapper
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface CustomerMapper {
 
 	CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
@@ -38,21 +41,14 @@ public interface CustomerMapper {
 			@Mapping(source = "version", target = "version"), })
 	CustomerDetailsResponse customerEntityToDetails(CustomerEntity customerEntity);
 
-	/*
-	 * @Mappings({ @Mapping(source = "companyname", target = "companyname"),
-	 * 
-	 * @Mapping(source = "contactname", target = "contactname"),
-	 * 
-	 * @Mapping(source = "contactemail", target = "contactemail"),
-	 * 
-	 * @Mapping(source = "publicKeyconfirmed", target = "publickeyconfirmed"),
-	 * 
-	 * @Mapping(source = "uniqueiustomerid", target = "uniquecustomerid"),
-	 * 
-	 * @Mapping(source = "hsmUserid", target = "hsmuserid") }) CustomerEntity
-	 * customerCreationRequestToEntity(CustomerCreationRequest
-	 * customerCreationRequest);
-	 */
+	@Mappings({ @Mapping(source = "companyName", target = "companyname"),
+
+			@Mapping(source = "contactName", target = "contactname"),
+
+			@Mapping(source = "contactEmail", target = "contactemail"),
+
+			@Mapping(source = "contactNumber", target = "uniquecustomerid") })
+	CustomerEntity customerCreationRequestToEntity(CustomerCreationRequest customerCreationRequest);
 
 	default String map(OffsetDateTime datetime) {
 		return datetime.toString();

@@ -20,25 +20,25 @@ public class CustomerEntity extends AbstractTimestampEntity {
 
 	@Id
 	@SequenceGenerator(name = "id_seq_gen", sequenceName = "customer_id", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "id_seq_gen")
 	private long id;
 
-	@Column(name = "COMPANYNAME", columnDefinition = "VARCHAR2(255 BYTE)", nullable = true)
+	@Column(name = "COMPANYNAME", columnDefinition = "VARCHAR(255)", nullable = true)
 	private String companyname;
 
-	@Column(name = "CONTACTNAME", columnDefinition = "VARCHAR2(100 BYTE)", nullable = false)
+	@Column(name = "CONTACTNAME", columnDefinition = "VARCHAR(255)", nullable = false)
 	private String contactname;
 
-	@Column(name = "CONTACTEMAIL", columnDefinition = "VARCHAR2(100 BYTE)", nullable = false)
+	@Column(name = "CONTACTEMAIL", columnDefinition = "VARCHAR(100)", nullable = false)
 	private String contactemail;
 
-	@Column(name = "PUBLICKEYCONFIRMED", columnDefinition = "CHAR(1 BYTE)", nullable = false)
+	@Column(name = "PUBLICKEYCONFIRMED", columnDefinition = "TINYINT(1)", nullable = false)
 	private boolean publickeyconfirmed;
 
-	@Column(name = "UNIQUECUSTOMERID", columnDefinition = "VARCHAR2(255 BYTE)", nullable = true)
+	@Column(name = "UNIQUECUSTOMERID", columnDefinition = "VARCHAR(255)", nullable = true)
 	private String uniquecustomerid;
 
-	@Column(name = "HSMUSERID", columnDefinition = "VARCHAR2(255 BYTE)", nullable = true)
+	@Column(name = "HSMUSERID", columnDefinition = "VARCHAR(255)", nullable = true)
 	private String hsmuserid;
 
 }

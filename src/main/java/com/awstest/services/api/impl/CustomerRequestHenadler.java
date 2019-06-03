@@ -35,24 +35,4 @@ public class CustomerRequestHenadler implements CustomerApi {
 		return new ResponseEntity<CustomerDetailsResponse>(customerDetailsResponse, status);
 	}
 
-	/*
-	 * public ResponseEntity<CustomerDetails> customersignup(@Valid @RequestBody
-	 * CustomerCreationRequest customercreationrequest) { CustomerDetails
-	 * customerdetails = new CustomerDetails(); CustomerInfo customerrequest = new
-	 * CustomerInfo();
-	 * customerrequest.setContactName(customercreationrequest.getContactName());
-	 * customerrequest.setAccountEmail(customercreationrequest.getAccountEmail());
-	 * customerrequest.setCompanyName(customercreationrequest.getCompanyName());
-	 * customerrequest.setContactEmail(customercreationrequest.getContactEmail());
-	 * try { logger.info("creating customer in system for customer: {}",
-	 * customercreationrequest.getContactName()); customerdetails =
-	 * customerservice.createCustomer(customerrequest); } catch (Exception e) {
-	 * logger.
-	 * error("Failed to create Customer in system for Customer: {} due to: {}",
-	 * customercreationrequest.getContactName(), e.getMessage()); return new
-	 * ResponseEntity<>(HttpStatus.EXPECTATION_FAILED); } return new
-	 * ResponseEntity<CustomerDetailsResponse>(customerdetails, HttpStatus.CREATED);
-	 * }
-	 */
-
 }

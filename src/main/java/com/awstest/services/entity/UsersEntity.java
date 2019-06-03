@@ -27,7 +27,7 @@ public class UsersEntity extends AbstractTimestampEntity
      */
     @Id
     @SequenceGenerator(name = "userid_seq", sequenceName = "user_id", initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userid_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "userid_seq")
     private long ID;
 
     /**
