@@ -770,3 +770,72 @@ components:
         - SUBADMIN
         - USER
         - DUMMY
+    CustomerSignupRequest:
+      type: object
+      properties:
+        companyname:
+          type: string
+          maxLength: 50
+          minLength: 1
+        username:
+          type: string
+          maxLength: 50
+          minLength: 1
+        password:
+          type: string
+          maxLength: 50
+          minLength: 1
+        email:
+          type: string
+          maxLength: 50
+          minLength: 1
+        contactnumber:
+          type: string
+          maxLength: 50
+          minLength: 1
+        address:
+          type: string
+          maxLength: 255
+          minLength: 1
+        customertype:
+          $ref: '#/components/schemas/CustomerType'
+    UserSignupRequest:
+      type: object
+      properties:
+        customer:
+          type: string
+          maxLength: 50
+          minLength: 1
+        username:
+          type: string
+          maxLength: 50
+          minLength: 1
+        password:
+          type: string
+          maxLength: 50
+          minLength: 1
+        email:
+          type: string
+          maxLength: 50
+          minLength: 1
+        contactnumber:
+          type: string
+          maxLength: 50
+          minLength: 1
+        address:
+          type: string
+          maxLength: 255
+          minLength: 1
+        UserType:
+          $ref: '#/components/schemas/CustomerType'
+    UserLoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 50
+          minLength: 1
+        password:
+          type: string
+          maxLength: 50
+          minLength: 1

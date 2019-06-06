@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -14,13 +13,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name = "CUSTOMER", schema = "vikas_personal")
 public class CustomerEntity extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "id_seq_gen", sequenceName = "customer_id", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "id_seq_gen")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@Column(name = "COMPANYNAME", columnDefinition = "VARCHAR(255)", nullable = true)

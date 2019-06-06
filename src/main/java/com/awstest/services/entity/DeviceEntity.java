@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "DEVICE")
+@Table(name = "DEVICE", schema = "vikas_personal")
 public class DeviceEntity extends AbstractTimestampEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -25,8 +24,7 @@ public class DeviceEntity extends AbstractTimestampEntity {
 	 * The column <code>public.device.id</code>.
 	 */
 	@Id
-	@SequenceGenerator(name = "Device_seq_id", initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "Device_seq_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long ID;
 
 	/**
@@ -64,7 +62,7 @@ public class DeviceEntity extends AbstractTimestampEntity {
 	/**
 	 * The column <code>public.device.customerid</code>.
 	 */
-	@Column(name = "customerid", columnDefinition = "BIGINT(50)" ,nullable = true)
+	@Column(name = "customerid", columnDefinition = "BIGINT(50)", nullable = true)
 	private Long CUSTOMERID;
 
 }

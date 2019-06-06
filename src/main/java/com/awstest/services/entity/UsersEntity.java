@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,7 +15,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name="USERS")
+@Table(name="USERS", schema = "vikas_personal")
 public class UsersEntity extends AbstractTimestampEntity
 {
 
@@ -26,8 +25,7 @@ public class UsersEntity extends AbstractTimestampEntity
      * The column <code>public.users.id</code>.
      */
     @Id
-    @SequenceGenerator(name = "userid_seq", sequenceName = "user_id", initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "userid_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
 
     /**
