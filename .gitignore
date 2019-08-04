@@ -79,3 +79,4 @@ hs_err_pid*
 /src/main/resources/db/changelog/migration/V7__Create_Device_Table.sql
 /src/main/resources/db/changelog/migration/V8__WorklistKDSSTIV1_Table.sql
 /src/main/resources/db/changelog/migration/V9__Create_Customer_Publickey_Table.sql
+/.temp-POItest-classpath-arg-1561129399423.txt
