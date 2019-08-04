@@ -9,7 +9,7 @@ import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
-import com.awstest.services.entity.CustomerEntity;
+import com.awstest.services.entity.Customer;
 import com.awstest.services.openapi.model.CustomerCreationRequest;
 import com.awstest.services.openapi.model.CustomerDetailsResponse;
 
@@ -39,7 +39,7 @@ public interface CustomerMapper {
 			@Mapping(source = "updatedAt", target = "updatedAt"),
 
 			@Mapping(source = "version", target = "version"), })
-	CustomerDetailsResponse customerEntityToDetails(CustomerEntity customerEntity);
+	CustomerDetailsResponse customerEntityToDetails(Customer customerEntity);
 
 	@Mappings({ @Mapping(source = "companyName", target = "companyname"),
 
@@ -48,7 +48,7 @@ public interface CustomerMapper {
 			@Mapping(source = "contactEmail", target = "contactemail"),
 
 			@Mapping(source = "contactNumber", target = "uniquecustomerid") })
-	CustomerEntity customerCreationRequestToEntity(CustomerCreationRequest customerCreationRequest);
+	Customer customerCreationRequestToEntity(CustomerCreationRequest customerCreationRequest);
 
 	default String map(OffsetDateTime datetime) {
 		return datetime.toString();

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.awstest.services.entity.CustomerEntity;
+import com.awstest.services.entity.Customer;
 import com.awstest.services.entity.mapper.CustomerMapper;
 import com.awstest.services.entity.repository.CustomerRepository;
 import com.awstest.services.entity.service.CustomerService;
@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDetailsResponse getCustomerDetailsbyid(long customerID) {
 		LOGGER.info("fetching customer details by ID {}", customerID);
 
-		Optional<CustomerEntity> optCustomerEntity = customerRepository.findById(customerID);
+		Optional<Customer> optCustomerEntity = customerRepository.findById(customerID);
 
 		if (optCustomerEntity.isPresent()) {
 			return CustomerMapper.INSTANCE.customerEntityToDetails(optCustomerEntity.get());
@@ -37,10 +37,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public CustomerDetailsResponse createCustomer(CustomerCreationRequest customerCreationRequest) {
-		LOGGER.info("Ceating customer for {}", customerCreationRequest.getContactName());
-		CustomerEntity custEntity = customerRepository
-				.save(CustomerMapper.INSTANCE.customerCreationRequestToEntity(customerCreationRequest));
-		return CustomerMapper.INSTANCE.customerEntityToDetails(custEntity);
-	}
+		LOGGER.info("fetching customer details by ID {}", customerCreationRequest.toString());
 
+		Customer customerinserted = customerRepository
+				.save(CustomerMapper.INSTANCE.customerCreationRequestToEntity(customerCreationRequest));
+
+		if (customerCreationRequest != null) {
+			return CustomerMapper.INSTANCE.customerEntityToDetails(customerinserted);
+		}
+		return null;
+	}
 }

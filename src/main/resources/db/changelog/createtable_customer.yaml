@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: root
+
+  - changeSet:
+      id: 1
+      author: vikas
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: companyname
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contactname
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contactemail
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PUBLICKEYCONFIRMED
+                  type: TINYINT(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UNIQUECUSTOMERID
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: HSMUSERID
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: true

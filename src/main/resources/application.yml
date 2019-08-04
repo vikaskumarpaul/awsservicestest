@@ -25,20 +25,28 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     initialization-mode: ALWAYS
     password: admin
-    url: jdbc:mysql://localhost:3306/vikas_personal
+    url: jdbc:mysql://localhost:3306/awsservicestest
     username: root
   devtools:
     add-properties: false
   jpa:
-#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: none
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
   profiles:
     active: dev
   session:
     store-type: none
+#  liquibase:
+#    drop-first: false#    default-schema: vikas_test
+#    enabled: true
+#    url: jdbc:mysql://localhost:3306/vikas_test
+#    user: root
+#    password: 
+#    liquibase-schema: vikas_test
