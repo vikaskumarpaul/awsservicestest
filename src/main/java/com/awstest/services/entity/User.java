@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "USERS")
+@Table(name = "iotuser")
 public class User extends AbstractTimestampEntity {
 
 	private static final long serialVersionUID = 1L;
