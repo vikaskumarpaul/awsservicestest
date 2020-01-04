@@ -35,7 +35,7 @@ public class CustomerRequestHenadler implements CustomerApi {
 		try {
 			customerDetailsResponse = customerService.getCustomerDetailsbyid(customerId);
 		} catch (Exception e) {
-			LOGGER.error("Failed to get customer details for customer {}", customerId);
+			LOGGER.error("Failed to get customer details for customer {}", customerId); 
 		}
 
 		return new ResponseEntity<CustomerDetailsResponse>(customerDetailsResponse, status);

@@ -24,9 +24,10 @@ spring:
       validation-query: SELECT 1
     driverClassName: com.mysql.jdbc.Driver
     initialization-mode: ALWAYS
-    password: admin
     url: jdbc:mysql://localhost:3306/awsservicestest
     username: root
+    password: great123
+##    ddl-auto: create
   devtools:
     add-properties: false
   jpa:

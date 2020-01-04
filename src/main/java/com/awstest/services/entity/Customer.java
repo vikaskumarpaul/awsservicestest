@@ -25,7 +25,7 @@ public class Customer extends AbstractTimestampEntity {
 	@Column(name = "companyname", columnDefinition = "VARCHAR(255)", nullable = true)
 	private String companyname;
 
-	@Column(name = "contactname", columnDefinition = "VARCHAR(255)", nullable = false)
+	@Column(name = " ", columnDefinition = "VARCHAR(255)", nullable = false)
 	private String contactname;
 
 	@Column(name = "contactemail", columnDefinition = "VARCHAR(100)", nullable = false)
